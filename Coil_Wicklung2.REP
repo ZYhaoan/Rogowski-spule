@@ -1,0 +1,64 @@
+*************************************************************
+FileName = Coil_Wicklung2.GBR
+AutoAperture = True
+*************************************************************
+Generating : Top Layer
+      File : Coil_Wicklung2_Copper_Signal_Top.gbr
+
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D10
+    D11
+    D12
+    D13
+*************************************************************
+
+*************************************************************
+Generating : Bottom Layer
+      File : Coil_Wicklung2_Copper_Signal_Bot.gbr
+
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D10
+    D11
+    D12
+    D13
+*************************************************************
+
+*************************************************************
+Generating : Profile
+      File : Coil_Wicklung2_Profile.gbr
+
+
+Used DCodes :
+    D14
+*************************************************************
+
+*************************************************************
+Generating : Non-plated through-hole drill file
+      File : Coil_Wicklung2_NPTH_Drill.gbr
+
+
+Used DCodes :
+*************************************************************
+
+*************************************************************
+Generating : Plated through-hole drill file
+      File : Coil_Wicklung2_PTH_Drill.gbr
+
+
+Used DCodes :
+    D15
+    D16
+    D17
+    D18
+*************************************************************
+

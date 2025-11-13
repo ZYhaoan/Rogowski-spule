@@ -1,0 +1,80 @@
+*************************************************************
+FileName = Rogowski Integrator pcb.GBR
+AutoAperture = True
+*************************************************************
+Generating : Top Layer
+      File : Rogowski Integrator pcb_Copper_Signal_Top.gbr
+
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D10
+    D11
+    D12
+    D13
+    D14
+    D15
+    D16
+    D17
+    D18
+    D19
+    D20
+    D21
+    D22
+    D23
+    D24
+    D25
+    D26
+    D27
+    D28
+    D29
+*************************************************************
+
+*************************************************************
+Generating : Bottom Layer
+      File : Rogowski Integrator pcb_Copper_Signal_Bot.gbr
+
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D22
+    D26
+    D27
+    D28
+    D29
+*************************************************************
+
+*************************************************************
+Generating : Profile
+      File : Rogowski Integrator pcb_Profile.gbr
+
+
+Used DCodes :
+    D30
+*************************************************************
+
+*************************************************************
+Generating : Non-plated through-hole drill file
+      File : Rogowski Integrator pcb_NPTH_Drill.gbr
+
+
+Used DCodes :
+*************************************************************
+
+*************************************************************
+Generating : Plated through-hole drill file
+      File : Rogowski Integrator pcb_PTH_Drill.gbr
+
+
+Used DCodes :
+    D31
+    D32
+    D33
+*************************************************************
+

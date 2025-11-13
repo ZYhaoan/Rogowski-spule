@@ -1,0 +1,17 @@
+Output: Gerber X2 Files
+Type  : GerberX2
+From  : Project [Rogowski Spule.PrjPcb]
+   Generated File[Coil_Wicklung2_Copper_Signal_Top.gbr]
+   Generated File[Coil_Wicklung2_Copper_Signal_Bot.gbr]
+   Generated File[Coil_Wicklung2_Profile.gbr]
+   Generated File[Coil_Wicklung2_NPTH_Drill.gbr]
+   Generated File[Coil_Wicklung2_PTH_Drill.gbr]
+   Generated File[Coil_Wicklung2.RUL]
+   Generated File[Coil_Wicklung2.EXTREP]
+   Generated File[Coil_Wicklung2.REP]
+
+
+Files Generated   : 8
+Documents Printed : 0
+
+Finished Output Generation At 21:13:30 On 30.10.2025

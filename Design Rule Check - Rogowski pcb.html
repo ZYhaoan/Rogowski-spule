@@ -1,0 +1,637 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD21\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">06.10.2025</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">21:30:36</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc" class="file"><acronym title="C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc">C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">4</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">87</td></tr>
+</table>
+</td>
+</table><a name="ID3LCZGQCY1JA3PMOXG44O0WXCSCAABR3RAKXKASB4PHR1XSLFOEG"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDXOZX4M21PSCKL3Z4XLKKYK2W1HRQQIKDUXMZDOIQXGPRS10PHZ0L">Zero hole size multi-layer pad(s) detected</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTGAAOCTZEOGIMFKFD4SNA3O5JB5TKR3XSP0TVQKP3UBSJU0W4VAE">Multilayer Pads with 0 size Hole found</a></td>
+<td class="column2">2</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">4</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDIS5X1BNYF5ZGNSEBWTO5MKZ0KJUCAQF2LO3NCDE1KZMSIFOPO4MN">Clearance Constraint (Gap=0.5mm) (All),(All)</a></td>
+<td class="column2">37</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0D0DMNGVD21EILOBLZQY5BGGUMJW2MRZQUF4LTHCID10POLMUA2">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDL3IXI40FOKO0E4LUTDBL45O0GH3RDXYKR00VMSHOXUWQK4RGAQD">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDSSCOVXRU5HEKLY0KTLSDKCGD4GCDQSDZOMATBCILX315ROG0SQMK">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDLZUSO4UMU3KYD5TQKMR2SF0UYMTIXMBKT1ZZLEPXTNMGV1ELU4JD">Width Constraint (Min=0.5mm) (Max=0.7mm) (Preferred=0.5mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDKCWQBXWJ0ZDKO50ENDDDKQGGUO0JHU2ZEVHURSKYO2JGE4E1WH5">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDSIJM2WDPVSOWINJO2BCUSBYXHUSQGB14CL11OKYNM2T1P3Z01VH">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDOVTB2G2FS0IUHK5TNVS4FET3BJY0GEPFYI4MT1BKPEC3DRZ13IMM">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID2DVD4U5L2A00DL04EA1IBWUAYOVO3NWW0T5YHEJ2QHIJZ5HV0JAO">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">10</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID5IEOG0JLLMCMKHZP15ZNFZFQBHLAY3QZPZPFJLFTZUEFMFBTD5E">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">26</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID1AR4XX4IZF1OP5MWCXWEYOYTBBPCMRIOZGS202JG130TFRZI4WZJ">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">11</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDOWQ1EIZDSKQ4M4YS0SIY5GBRKMRWSAW4JC322QP5BU5UX1G2BUUC">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDMCKDKHAKNGBVH1T2SHCJTX3WGHYQW2F0RNTTECDIYLCCWTJM23GC">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">87</td>
+</tr>
+</table><br><a name="IDJNTDUGR2R0NDBVDQ0VH4Q0YN2GJBUGEOW03JBJLSPVJBYQ4JGBUL"><h2>Warnings</h2></a><a name="IDXOZX4M21PSCKL3Z4XLKKYK2W1HRQQIKDUXMZDOIQXGPRS10PHZ0L"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="warning">Zero hole size multi-layer pad(s) detected</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3362.142mil|Location2.X=3488.252mil|Location1.Y=1984.189mil|Location2.Y=2110.299mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3362.142mil|Location2.X=3488.252mil|Location1.Y=1984.189mil|Location2.Y=2110.299mil|Absolute=True">Pad Free-I_OUT(16mm,14mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3431.039mil|Location2.X=4676.244mil|Location1.Y=1760.764mil|Location2.Y=2110.299mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3431.039mil|Location2.X=4676.244mil|Location1.Y=1760.764mil|Location2.Y=2110.299mil|Absolute=True">Net -5V</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.095mil|Location2.X=3616.205mil|Location1.Y=1984.189mil|Location2.Y=2110.299mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.095mil|Location2.X=3616.205mil|Location1.Y=1984.189mil|Location2.Y=2110.299mil|Absolute=True">Pad Free-I_OUT(19.25mm,14mm) on Multi-Layer</acronym></a> on <a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3883.795mil|Location2.X=4423.291mil|Location1.Y=1760.764mil|Location2.Y=1948.882mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3883.795mil|Location2.X=4423.291mil|Location1.Y=1760.764mil|Location2.Y=1948.882mil|Absolute=True">Net +5V</acronym></a></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDTGAAOCTZEOGIMFKFD4SNA3O5JB5TKR3XSP0TVQKP3UBSJU0W4VAE"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="warning">Multilayer Pads with 0 size Hole found</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3362.142mil|Location2.X=3488.252mil|Location1.Y=1984.189mil|Location2.Y=2110.299mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3362.142mil|Location2.X=3488.252mil|Location1.Y=1984.189mil|Location2.Y=2110.299mil|Absolute=True">Pad Free-I_OUT(16mm,14mm) on Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.095mil|Location2.X=3616.205mil|Location1.Y=1984.189mil|Location2.Y=2110.299mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.095mil|Location2.X=3616.205mil|Location1.Y=1984.189mil|Location2.Y=2110.299mil|Absolute=True">Pad Free-I_OUT(19.25mm,14mm) on Multi-Layer</acronym></a></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDIS5X1BNYF5ZGNSEBWTO5MKZ0KJUCAQF2LO3NCDE1KZMSIFOPO4MN"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Clearance Constraint (Gap=0.5mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3423.588mil|Location2.X=3455.94mil|Location1.Y=1780.871mil|Location2.Y=1801.806mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3423.588mil|Location2.X=3455.94mil|Location1.Y=1780.871mil|Location2.Y=1801.806mil|Absolute=True">Clearance Constraint: (0.3mm &lt; 0.5mm) Between Pad C10-1(17mm,8.425mm) on Top Layer And Pad C10-2(17mm,6.575mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4418.666mil|Location2.X=4439.601mil|Location1.Y=2034.217mil|Location2.Y=2066.57mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4418.666mil|Location2.X=4439.601mil|Location1.Y=2034.217mil|Location2.Y=2066.57mil|Absolute=True">Clearance Constraint: (0.3mm &lt; 0.5mm) Between Pad C2-1(42.325mm,13.5mm) on Top Layer And Pad C2-2(40.675mm,13.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3478.706mil|Location2.X=3499.641mil|Location1.Y=2025.359mil|Location2.Y=2057.712mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3478.706mil|Location2.X=3499.641mil|Location1.Y=2025.359mil|Location2.Y=2057.712mil|Absolute=True">Clearance Constraint: (0.25mm &lt; 0.5mm) Between Pad Free-I_OUT(16mm,14mm) on Multi-Layer And Pad Free-I_OUT(19.25mm,14mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3487.033mil|Location2.X=3523.416mil|Location1.Y=2016.826mil|Location2.Y=2030.949mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3487.033mil|Location2.X=3523.416mil|Location1.Y=2016.826mil|Location2.Y=2030.949mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.5mm) Between Pad Free-I_OUT(19.25mm,14mm) on Multi-Layer And Track (16mm,14mm)(23.943mm,11.307mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3434.414mil|Location2.X=3455.349mil|Location1.Y=1895.438mil|Location2.Y=1927.79mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3434.414mil|Location2.X=3455.349mil|Location1.Y=1895.438mil|Location2.Y=1927.79mil|Absolute=True">Clearance Constraint: (0.2mm &lt; 0.5mm) Between Pad R10-1(16.075mm,11mm) on Top Layer And Pad R10-2(16.925mm,11mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3435.891mil|Location2.X=3456.826mil|Location1.Y=1895.438mil|Location2.Y=1927.79mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3435.891mil|Location2.X=3456.826mil|Location1.Y=1895.438mil|Location2.Y=1927.79mil|Absolute=True">Clearance Constraint: (0.275mm &lt; 0.5mm) Between Pad R10-1(16.075mm,11mm) on Top Layer And Track (16.925mm,8.5mm)(16.925mm,11mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3434.414mil|Location2.X=3455.349mil|Location1.Y=1619.848mil|Location2.Y=1652.2mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3434.414mil|Location2.X=3455.349mil|Location1.Y=1619.848mil|Location2.Y=1652.2mil|Absolute=True">Clearance Constraint: (0.2mm &lt; 0.5mm) Between Pad R3-1(16.075mm,4mm) on Top Layer And Pad R3-2(16.925mm,4mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3435.891mil|Location2.X=3456.826mil|Location1.Y=1643.469mil|Location2.Y=1675.822mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3435.891mil|Location2.X=3456.826mil|Location1.Y=1643.469mil|Location2.Y=1675.822mil|Absolute=True">Clearance Constraint: (0.275mm &lt; 0.5mm) Between Pad R3-1(16.075mm,4mm) on Top Layer And Track (16.925mm,4mm)(16.925mm,6.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3627.49mil|Location2.X=3648.425mil|Location1.Y=1887.564mil|Location2.Y=1919.916mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3627.49mil|Location2.X=3648.425mil|Location1.Y=1887.564mil|Location2.Y=1919.916mil|Absolute=True">Clearance Constraint: (0.35mm &lt; 0.5mm) Between Pad R5-2(20.776mm,10mm) on Top Layer And Via (21.979mm,10.5mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3788.745mil|Location2.X=3821.098mil|Location1.Y=1627.328mil|Location2.Y=1648.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3788.745mil|Location2.X=3821.098mil|Location1.Y=1627.328mil|Location2.Y=1648.263mil|Absolute=True">Clearance Constraint: (0.4mm &lt; 0.5mm) Between Pad R7-2(25.125mm,4.5mm) on Top Layer And Via (25.5mm,3mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4438.351mil|Location2.X=4459.286mil|Location1.Y=1670.033mil|Location2.Y=1702.386mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4438.351mil|Location2.X=4459.286mil|Location1.Y=1670.033mil|Location2.Y=1702.386mil|Absolute=True">Clearance Constraint: (0.452mm &lt; 0.5mm) Between Pad R9-1(41.265mm,4.5mm) on Top Layer And Pad R9-2(42.735mm,4.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4373.391mil|Location2.X=4405.743mil|Location1.Y=1799.572mil|Location2.Y=1820.507mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4373.391mil|Location2.X=4405.743mil|Location1.Y=1799.572mil|Location2.Y=1820.507mil|Absolute=True">Clearance Constraint: (0.35mm &lt; 0.5mm) Between Pad U1-1(40.8mm,8.45mm) on Top Layer And Pad U1-2(40.8mm,7.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4366.447mil|Location2.X=4387.382mil|Location1.Y=1793.944mil|Location2.Y=1826.363mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4366.447mil|Location2.X=4387.382mil|Location1.Y=1793.944mil|Location2.Y=1826.363mil|Absolute=True">Clearance Constraint: (0.357mm &lt; 0.5mm) Between Pad U1-1(40.8mm,8.45mm) on Top Layer And Track (39.311mm,8.5mm)(39.75mm,8.061mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4366.447mil|Location2.X=4387.382mil|Location1.Y=1793.944mil|Location2.Y=1826.363mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4366.447mil|Location2.X=4387.382mil|Location1.Y=1793.944mil|Location2.Y=1826.363mil|Absolute=True">Clearance Constraint: (0.357mm &lt; 0.5mm) Between Pad U1-1(40.8mm,8.45mm) on Top Layer And Track (39.75mm,7.689mm)(39.75mm,8.061mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4373.391mil|Location2.X=4405.743mil|Location1.Y=1798.588mil|Location2.Y=1819.523mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4373.391mil|Location2.X=4405.743mil|Location1.Y=1798.588mil|Location2.Y=1819.523mil|Absolute=True">Clearance Constraint: (0.4mm &lt; 0.5mm) Between Pad U1-1(40.8mm,8.45mm) on Top Layer And Track (39.939mm,7.5mm)(40.8mm,7.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4373.391mil|Location2.X=4405.743mil|Location1.Y=1762.17mil|Location2.Y=1783.105mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4373.391mil|Location2.X=4405.743mil|Location1.Y=1762.17mil|Location2.Y=1783.105mil|Absolute=True">Clearance Constraint: (0.35mm &lt; 0.5mm) Between Pad U1-2(40.8mm,7.5mm) on Top Layer And Pad U1-3(40.8mm,6.55mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4373.391mil|Location2.X=4405.743mil|Location1.Y=1763.155mil|Location2.Y=1784.09mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4373.391mil|Location2.X=4405.743mil|Location1.Y=1763.155mil|Location2.Y=1784.09mil|Absolute=True">Clearance Constraint: (0.4mm &lt; 0.5mm) Between Pad U1-3(40.8mm,6.55mm) on Top Layer And Track (39.939mm,7.5mm)(40.8mm,7.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3782.84mil|Location2.X=3815.192mil|Location1.Y=1799.572mil|Location2.Y=1820.507mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3782.84mil|Location2.X=3815.192mil|Location1.Y=1799.572mil|Location2.Y=1820.507mil|Absolute=True">Clearance Constraint: (0.35mm &lt; 0.5mm) Between Pad U2-1(25.8mm,8.45mm) on Top Layer And Pad U2-2(25.8mm,7.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3782.84mil|Location2.X=3815.192mil|Location1.Y=1798.588mil|Location2.Y=1819.523mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3782.84mil|Location2.X=3815.192mil|Location1.Y=1798.588mil|Location2.Y=1819.523mil|Absolute=True">Clearance Constraint: (0.4mm &lt; 0.5mm) Between Pad U2-1(25.8mm,8.45mm) on Top Layer And Track (24.3mm,7.5mm)(25.8mm,7.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3782.84mil|Location2.X=3815.192mil|Location1.Y=1762.17mil|Location2.Y=1783.105mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3782.84mil|Location2.X=3815.192mil|Location1.Y=1762.17mil|Location2.Y=1783.105mil|Absolute=True">Clearance Constraint: (0.35mm &lt; 0.5mm) Between Pad U2-2(25.8mm,7.5mm) on Top Layer And Pad U2-3(25.8mm,6.55mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3788.955mil|Location2.X=3821.307mil|Location1.Y=1760.097mil|Location2.Y=1781.032mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3788.955mil|Location2.X=3821.307mil|Location1.Y=1760.097mil|Location2.Y=1781.032mil|Absolute=True">Clearance Constraint: (0.455mm &lt; 0.5mm) Between Pad U2-2(25.8mm,7.5mm) on Top Layer And Track (25.125mm,6.114mm)(25.505mm,6.495mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3800.556mil|Location2.X=3832.909mil|Location1.Y=1800.556mil|Location2.Y=1821.491mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3800.556mil|Location2.X=3832.909mil|Location1.Y=1800.556mil|Location2.Y=1821.491mil|Absolute=True">Clearance Constraint: (0.4mm &lt; 0.5mm) Between Pad U2-2(25.8mm,7.5mm) on Top Layer And Track (25.8mm,8.45mm)(25.956mm,8.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3806.702mil|Location2.X=3839.054mil|Location1.Y=1801.54mil|Location2.Y=1822.475mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3806.702mil|Location2.X=3839.054mil|Location1.Y=1801.54mil|Location2.Y=1822.475mil|Absolute=True">Clearance Constraint: (0.45mm &lt; 0.5mm) Between Pad U2-2(25.8mm,7.5mm) on Top Layer And Track (25.956mm,8.5mm)(25.956mm,10.05mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3782.84mil|Location2.X=3815.192mil|Location1.Y=1763.155mil|Location2.Y=1784.09mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3782.84mil|Location2.X=3815.192mil|Location1.Y=1763.155mil|Location2.Y=1784.09mil|Absolute=True">Clearance Constraint: (0.4mm &lt; 0.5mm) Between Pad U2-3(25.8mm,6.55mm) on Top Layer And Track (24.3mm,7.5mm)(25.8mm,7.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3788.745mil|Location2.X=3821.098mil|Location1.Y=1581.068mil|Location2.Y=1602.003mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3788.745mil|Location2.X=3821.098mil|Location1.Y=1581.068mil|Location2.Y=1602.003mil|Absolute=True">Clearance Constraint: (0.35mm &lt; 0.5mm) Between Track (23mm,2mm)(27.207mm,2mm) on Top Layer And Via (25.5mm,3mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3800.556mil|Location2.X=3832.909mil|Location1.Y=1799.572mil|Location2.Y=1820.507mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3800.556mil|Location2.X=3832.909mil|Location1.Y=1799.572mil|Location2.Y=1820.507mil|Absolute=True">Clearance Constraint: (0.45mm &lt; 0.5mm) Between Track (24.3mm,7.5mm)(25.8mm,7.5mm) on Top Layer And Track (25.8mm,8.45mm)(25.956mm,8.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3949.903mil|Location2.X=3976.282mil|Location1.Y=1641.484mil|Location2.Y=1667.688mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3949.903mil|Location2.X=3976.282mil|Location1.Y=1641.484mil|Location2.Y=1667.688mil|Absolute=True">Clearance Constraint: (0.35mm &lt; 0.5mm) Between Track (28.2mm,4.886mm)(29.586mm,3.5mm) on Top Layer And Via (30mm,4.5mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3985.595mil|Location2.X=4017.948mil|Location1.Y=1941.304mil|Location2.Y=1962.239mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3985.595mil|Location2.X=4017.948mil|Location1.Y=1941.304mil|Location2.Y=1962.239mil|Absolute=True">Clearance Constraint: (0.35mm &lt; 0.5mm) Between Track (29.1mm,12mm)(30.914mm,12mm) on Top Layer And Via (30.5mm,11mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3965.91mil|Location2.X=3998.263mil|Location1.Y=1640.123mil|Location2.Y=1661.058mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3965.91mil|Location2.X=3998.263mil|Location1.Y=1640.123mil|Location2.Y=1661.058mil|Absolute=True">Clearance Constraint: (0.35mm &lt; 0.5mm) Between Track (29.586mm,3.5mm)(30.414mm,3.5mm) on Top Layer And Via (30mm,4.5mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3981.918mil|Location2.X=4008.123mil|Location1.Y=1646.754mil|Location2.Y=1673.132mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3981.918mil|Location2.X=4008.123mil|Location1.Y=1646.754mil|Location2.Y=1673.132mil|Absolute=True">Clearance Constraint: (0.35mm &lt; 0.5mm) Between Track (30.414mm,3.5mm)(31.5mm,4.586mm) on Top Layer And Via (30mm,4.5mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4001.603mil|Location2.X=4027.981mil|Location1.Y=1929.404mil|Location2.Y=1955.609mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4001.603mil|Location2.X=4027.981mil|Location1.Y=1929.404mil|Location2.Y=1955.609mil|Absolute=True">Clearance Constraint: (0.35mm &lt; 0.5mm) Between Track (30.914mm,12mm)(31.5mm,11.414mm) on Top Layer And Via (30.5mm,11mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4008.233mil|Location2.X=4029.168mil|Location1.Y=1907.249mil|Location2.Y=1939.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4008.233mil|Location2.X=4029.168mil|Location1.Y=1907.249mil|Location2.Y=1939.601mil|Absolute=True">Clearance Constraint: (0.35mm &lt; 0.5mm) Between Track (31.5mm,4.586mm)(31.5mm,11.414mm) on Top Layer And Via (30.5mm,11mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4299.012mil|Location2.X=4331.365mil|Location1.Y=1709.792mil|Location2.Y=1730.727mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4299.012mil|Location2.X=4331.365mil|Location1.Y=1709.792mil|Location2.Y=1730.727mil|Absolute=True">Clearance Constraint: (0.389mm &lt; 0.5mm) Between Track (35.5mm,5.25mm)(38.836mm,5.25mm) on Top Layer And Via (38.461mm,6.289mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4324.894mil|Location2.X=4352.107mil|Location1.Y=1679.735mil|Location2.Y=1705.039mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4324.894mil|Location2.X=4352.107mil|Location1.Y=1679.735mil|Location2.Y=1705.039mil|Absolute=True">Clearance Constraint: (0.352mm &lt; 0.5mm) Between Track (35.5mm,5.25mm)(38.836mm,5.25mm) on Top Layer And Via (39.5mm,4.5mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4315.02mil|Location2.X=4341.225mil|Location1.Y=1717.195mil|Location2.Y=1743.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4315.02mil|Location2.X=4341.225mil|Location1.Y=1717.195mil|Location2.Y=1743.573mil|Absolute=True">Clearance Constraint: (0.35mm &lt; 0.5mm) Between Track (38.836mm,5.25mm)(39.311mm,5.725mm) on Top Layer And Via (38.461mm,6.289mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4324.894mil|Location2.X=4352.107mil|Location1.Y=1679.735mil|Location2.Y=1705.039mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4324.894mil|Location2.X=4352.107mil|Location1.Y=1679.735mil|Location2.Y=1705.039mil|Absolute=True">Clearance Constraint: (0.352mm &lt; 0.5mm) Between Track (38.836mm,5.25mm)(39.311mm,5.725mm) on Top Layer And Via (39.5mm,4.5mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4318.199mil|Location2.X=4340.577mil|Location1.Y=1720.456mil|Location2.Y=1749.805mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4318.199mil|Location2.X=4340.577mil|Location1.Y=1720.456mil|Location2.Y=1749.805mil|Absolute=True">Clearance Constraint: (0.37mm &lt; 0.5mm) Between Track (39.311mm,5.725mm)(40.457mm,5.725mm) on Top Layer And Via (38.461mm,6.289mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID0D0DMNGVD21EILOBLZQY5BGGUMJW2MRZQUF4LTHCID10POLMUA2"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Short-Circuit Constraint (Allowed=No) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3488.241mil|Location2.X=3618.058mil|Location1.Y=1946.371mil|Location2.Y=2076.188mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3488.241mil|Location2.X=3618.058mil|Location1.Y=1946.371mil|Location2.Y=2076.188mil|Absolute=True">Short-Circuit Constraint: Between Pad Free-I_OUT(19.25mm,14mm) on Multi-Layer And Track (16mm,14mm)(23.943mm,11.307mm) on Bottom Layer Location : [X = 90.25mm][Y = 51.086mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID2DVD4U5L2A00DL04EA1IBWUAYOVO3NWW0T5YHEJ2QHIJZ5HV0JAO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3424.43mil|Location2.X=3435.68mil|Location1.Y=1785.714mil|Location2.Y=1796.964mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3424.43mil|Location2.X=3435.68mil|Location1.Y=1785.714mil|Location2.Y=1796.964mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad C10-1(17mm,8.425mm) on Top Layer And Pad C10-2(17mm,6.575mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4423.509mil|Location2.X=4434.759mil|Location1.Y=2054.477mil|Location2.Y=2065.727mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4423.509mil|Location2.X=4434.759mil|Location1.Y=2054.477mil|Location2.Y=2065.727mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad C2-1(42.325mm,13.5mm) on Top Layer And Pad C2-2(40.675mm,13.5mm) on Top Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3970.753mil|Location2.X=3982.003mil|Location1.Y=1689.749mil|Location2.Y=1700.999mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3970.753mil|Location2.X=3982.003mil|Location1.Y=1689.749mil|Location2.Y=1700.999mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.122mm &lt; 0.254mm) Between Pad C3-2(30mm,5.7mm) on Top Layer And Via (30mm,4.5mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.122mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3483.548mil|Location2.X=3494.798mil|Location1.Y=2041.619mil|Location2.Y=2052.869mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3483.548mil|Location2.X=3494.798mil|Location1.Y=2041.619mil|Location2.Y=2052.869mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad Free-I_OUT(16mm,14mm) on Multi-Layer And Pad Free-I_OUT(19.25mm,14mm) on Multi-Layer [Top Solder] Mask Sliver [0.047mm] / [Bottom Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3630.332mil|Location2.X=3641.582mil|Location1.Y=1903.824mil|Location2.Y=1915.074mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3630.332mil|Location2.X=3641.582mil|Location1.Y=1903.824mil|Location2.Y=1915.074mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.248mm &lt; 0.254mm) Between Pad R5-2(20.776mm,10mm) on Top Layer And Via (21.979mm,10.5mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.248mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3793.588mil|Location2.X=3804.838mil|Location1.Y=1632.17mil|Location2.Y=1643.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3793.588mil|Location2.X=3804.838mil|Location1.Y=1632.17mil|Location2.Y=1643.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.197mm &lt; 0.254mm) Between Pad R7-2(25.125mm,4.5mm) on Top Layer And Via (25.5mm,3mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.197mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4374.233mil|Location2.X=4385.483mil|Location1.Y=1804.414mil|Location2.Y=1815.664mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4374.233mil|Location2.X=4385.483mil|Location1.Y=1804.414mil|Location2.Y=1815.664mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.147mm &lt; 0.254mm) Between Pad U1-1(40.8mm,8.45mm) on Top Layer And Pad U1-2(40.8mm,7.5mm) on Top Layer [Top Solder] Mask Sliver [0.147mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4374.233mil|Location2.X=4385.483mil|Location1.Y=1767.013mil|Location2.Y=1778.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4374.233mil|Location2.X=4385.483mil|Location1.Y=1767.013mil|Location2.Y=1778.263mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.147mm &lt; 0.254mm) Between Pad U1-2(40.8mm,7.5mm) on Top Layer And Pad U1-3(40.8mm,6.55mm) on Top Layer [Top Solder] Mask Sliver [0.147mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3783.682mil|Location2.X=3794.932mil|Location1.Y=1804.414mil|Location2.Y=1815.664mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3783.682mil|Location2.X=3794.932mil|Location1.Y=1804.414mil|Location2.Y=1815.664mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.147mm &lt; 0.254mm) Between Pad U2-1(25.8mm,8.45mm) on Top Layer And Pad U2-2(25.8mm,7.5mm) on Top Layer [Top Solder] Mask Sliver [0.147mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3783.682mil|Location2.X=3794.932mil|Location1.Y=1767.013mil|Location2.Y=1778.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3783.682mil|Location2.X=3794.932mil|Location1.Y=1767.013mil|Location2.Y=1778.263mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.147mm &lt; 0.254mm) Between Pad U2-2(25.8mm,7.5mm) on Top Layer And Pad U2-3(25.8mm,6.55mm) on Top Layer [Top Solder] Mask Sliver [0.147mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID5IEOG0JLLMCMKHZP15ZNFZFQBHLAY3QZPZPFJLFTZUEFMFBTD5E"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3805.399mil|Location2.X=3816.649mil|Location1.Y=1871.343mil|Location2.Y=1882.593mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3805.399mil|Location2.X=3816.649mil|Location1.Y=1871.343mil|Location2.Y=1882.593mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.25mm &lt; 0.254mm) Between Arc (25.8mm,9.3mm) on Top Overlay And Pad R2-1(26mm,10.5mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.25mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3493.265mil|Location2.X=3504.515mil|Location1.Y=1805.707mil|Location2.Y=1816.957mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3493.265mil|Location2.X=3504.515mil|Location1.Y=1805.707mil|Location2.Y=1816.957mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.194mm &lt; 0.254mm) Between Pad C10-1(17mm,8.425mm) on Top Layer And Text "C12" (18.096mm,6.738mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.194mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3493.265mil|Location2.X=3504.515mil|Location1.Y=1779.808mil|Location2.Y=1791.058mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3493.265mil|Location2.X=3504.515mil|Location1.Y=1779.808mil|Location2.Y=1791.058mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.194mm &lt; 0.254mm) Between Pad C10-2(17mm,6.575mm) on Top Layer And Text "C12" (18.096mm,6.738mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.194mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4223.706mil|Location2.X=4234.956mil|Location1.Y=1824.591mil|Location2.Y=1835.841mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4223.706mil|Location2.X=4234.956mil|Location1.Y=1824.591mil|Location2.Y=1835.841mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad C11-1(37mm,9.05mm) on Top Layer And Track (36.425mm,8.2mm)(36.425mm,8.3mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4268.981mil|Location2.X=4280.231mil|Location1.Y=1824.591mil|Location2.Y=1835.841mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4268.981mil|Location2.X=4280.231mil|Location1.Y=1824.591mil|Location2.Y=1835.841mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad C11-1(37mm,9.05mm) on Top Layer And Track (37.575mm,8.2mm)(37.575mm,8.3mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4223.706mil|Location2.X=4234.956mil|Location1.Y=1805.891mil|Location2.Y=1817.141mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4223.706mil|Location2.X=4234.956mil|Location1.Y=1805.891mil|Location2.Y=1817.141mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad C11-2(37mm,7.45mm) on Top Layer And Track (36.425mm,8.2mm)(36.425mm,8.3mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4268.981mil|Location2.X=4280.231mil|Location1.Y=1805.891mil|Location2.Y=1817.141mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4268.981mil|Location2.X=4280.231mil|Location1.Y=1805.891mil|Location2.Y=1817.141mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad C11-2(37mm,7.45mm) on Top Layer And Track (37.575mm,8.2mm)(37.575mm,8.3mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3724.198mil|Location2.X=3735.448mil|Location1.Y=1763.076mil|Location2.Y=1774.326mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3724.198mil|Location2.X=3735.448mil|Location1.Y=1763.076mil|Location2.Y=1774.326mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad C12-1(24.3mm,7.5mm) on Top Layer And Track (23.45mm,6.925mm)(23.55mm,6.925mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3724.198mil|Location2.X=3735.448mil|Location1.Y=1808.351mil|Location2.Y=1819.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3724.198mil|Location2.X=3735.448mil|Location1.Y=1808.351mil|Location2.Y=1819.601mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad C12-1(24.3mm,7.5mm) on Top Layer And Track (23.45mm,8.075mm)(23.55mm,8.075mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3660.839mil|Location2.X=3672.089mil|Location1.Y=1795.71mil|Location2.Y=1806.96mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3660.839mil|Location2.X=3672.089mil|Location1.Y=1795.71mil|Location2.Y=1806.96mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.194mm &lt; 0.254mm) Between Pad C12-2(22.7mm,7.5mm) on Top Layer And Text "C12" (18.096mm,6.738mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.194mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3705.497mil|Location2.X=3716.747mil|Location1.Y=1763.076mil|Location2.Y=1774.326mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3705.497mil|Location2.X=3716.747mil|Location1.Y=1763.076mil|Location2.Y=1774.326mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad C12-2(22.7mm,7.5mm) on Top Layer And Track (23.45mm,6.925mm)(23.55mm,6.925mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3705.497mil|Location2.X=3716.747mil|Location1.Y=1808.351mil|Location2.Y=1819.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3705.497mil|Location2.X=3716.747mil|Location1.Y=1808.351mil|Location2.Y=1819.601mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad C12-2(22.7mm,7.5mm) on Top Layer And Track (23.45mm,8.075mm)(23.55mm,8.075mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3948.115mil|Location2.X=3959.365mil|Location1.Y=1755.694mil|Location2.Y=1766.944mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3948.115mil|Location2.X=3959.365mil|Location1.Y=1755.694mil|Location2.Y=1766.944mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad C3-1(30mm,7.3mm) on Top Layer And Track (29.425mm,6.45mm)(29.425mm,6.55mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3993.391mil|Location2.X=4004.641mil|Location1.Y=1755.694mil|Location2.Y=1766.944mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3993.391mil|Location2.X=4004.641mil|Location1.Y=1755.694mil|Location2.Y=1766.944mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad C3-1(30mm,7.3mm) on Top Layer And Track (30.575mm,6.45mm)(30.575mm,6.55mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3948.115mil|Location2.X=3959.365mil|Location1.Y=1736.993mil|Location2.Y=1748.243mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3948.115mil|Location2.X=3959.365mil|Location1.Y=1736.993mil|Location2.Y=1748.243mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad C3-2(30mm,5.7mm) on Top Layer And Track (29.425mm,6.45mm)(29.425mm,6.55mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3993.391mil|Location2.X=4004.641mil|Location1.Y=1736.993mil|Location2.Y=1748.243mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3993.391mil|Location2.X=4004.641mil|Location1.Y=1736.993mil|Location2.Y=1748.243mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad C3-2(30mm,5.7mm) on Top Layer And Track (30.575mm,6.45mm)(30.575mm,6.55mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4619.742mil|Location2.X=4630.992mil|Location1.Y=1917.332mil|Location2.Y=1928.582mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4619.742mil|Location2.X=4630.992mil|Location1.Y=1917.332mil|Location2.Y=1928.582mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.136mm &lt; 0.254mm) Between Pad C5-1(47mm,10.3mm) on Top Layer And Text "C5" (46.23mm,11.038mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.136mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4617.407mil|Location2.X=4628.657mil|Location1.Y=1873.804mil|Location2.Y=1885.054mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4617.407mil|Location2.X=4628.657mil|Location1.Y=1873.804mil|Location2.Y=1885.054mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad C5-1(47mm,10.3mm) on Top Layer And Track (46.425mm,9.45mm)(46.425mm,9.55mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4662.682mil|Location2.X=4673.932mil|Location1.Y=1873.804mil|Location2.Y=1885.054mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4662.682mil|Location2.X=4673.932mil|Location1.Y=1873.804mil|Location2.Y=1885.054mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad C5-1(47mm,10.3mm) on Top Layer And Track (47.575mm,9.45mm)(47.575mm,9.55mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4617.407mil|Location2.X=4628.657mil|Location1.Y=1855.103mil|Location2.Y=1866.353mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4617.407mil|Location2.X=4628.657mil|Location1.Y=1855.103mil|Location2.Y=1866.353mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad C5-2(47mm,8.7mm) on Top Layer And Track (46.425mm,9.45mm)(46.425mm,9.55mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4662.682mil|Location2.X=4673.932mil|Location1.Y=1855.103mil|Location2.Y=1866.353mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4662.682mil|Location2.X=4673.932mil|Location1.Y=1855.103mil|Location2.Y=1866.353mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.175mm &lt; 0.254mm) Between Pad C5-2(47mm,8.7mm) on Top Layer And Track (47.575mm,9.45mm)(47.575mm,9.55mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3372.74mil|Location2.X=3380.407mil|Location1.Y=2014.346mil|Location2.Y=2022.013mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3372.74mil|Location2.X=3380.407mil|Location1.Y=2014.346mil|Location2.Y=2022.013mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad Free-I_OUT(16mm,14mm) on Multi-Layer And Text "R10" (14.346mm,11.738mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.261mil|Location2.X=3497.928mil|Location1.Y=2014.346mil|Location2.Y=2022.013mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3490.261mil|Location2.X=3497.928mil|Location1.Y=2014.346mil|Location2.Y=2022.013mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad Free-I_OUT(19.25mm,14mm) on Multi-Layer And Text "R10" (14.346mm,11.738mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3548.545mil|Location2.X=3556.212mil|Location1.Y=1984.356mil|Location2.Y=1992.022mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3548.545mil|Location2.X=3556.212mil|Location1.Y=1984.356mil|Location2.Y=1992.022mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.254mm) Between Pad Free-I_OUT(19.25mm,14mm) on Multi-Layer And Text "R5" (19.23mm,11.738mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4372.518mil|Location2.X=4383.768mil|Location1.Y=1897.725mil|Location2.Y=1908.975mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4372.518mil|Location2.X=4383.768mil|Location1.Y=1897.725mil|Location2.Y=1908.975mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.132mm &lt; 0.254mm) Between Pad R1-1(40.724mm,11mm) on Top Layer And Text "U1" (38.234mm,9.488mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.132mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.658mil|Location2.X=3764.908mil|Location1.Y=1676.983mil|Location2.Y=1688.233mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3753.658mil|Location2.X=3764.908mil|Location1.Y=1676.983mil|Location2.Y=1688.233mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.178mm &lt; 0.254mm) Between Pad R7-2(25.125mm,4.5mm) on Top Layer And Text "U2" (21.73mm,4.738mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.178mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID1AR4XX4IZF1OP5MWCXWEYOYTBBPCMRIOZGS202JG130TFRZI4WZJ"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4383.148mil|Location2.X=4394.398mil|Location1.Y=1861.09mil|Location2.Y=1874.587mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4383.148mil|Location2.X=4394.398mil|Location1.Y=1861.09mil|Location2.Y=1874.587mil|Absolute=True">Silk To Silk Clearance Constraint: (0.19mm &lt; 0.254mm) Between Arc (40.8mm,9.3mm) on Top Overlay And Text "U1" (38.234mm,9.488mm) on Top Overlay Silk Text to Silk Clearance [0.19mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4611.537mil|Location2.X=4619.204mil|Location1.Y=1936.803mil|Location2.Y=1944.47mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4611.537mil|Location2.X=4619.204mil|Location1.Y=1936.803mil|Location2.Y=1944.47mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C1" (43.984mm,11.238mm) on Top Overlay And Text "C5" (46.23mm,11.038mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4256.032mil|Location2.X=4267.282mil|Location1.Y=1692.441mil|Location2.Y=1703.691mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4256.032mil|Location2.X=4267.282mil|Location1.Y=1692.441mil|Location2.Y=1703.691mil|Absolute=True">Silk To Silk Clearance Constraint: (0.215mm &lt; 0.254mm) Between Text "C11" (37.012mm,3.1mm) on Top Overlay And Text "C8" (37.48mm,4.738mm) on Top Overlay Silk Text to Silk Clearance [0.215mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3645.179mil|Location2.X=3656.429mil|Location1.Y=1746.343mil|Location2.Y=1757.593mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3645.179mil|Location2.X=3656.429mil|Location1.Y=1746.343mil|Location2.Y=1757.593mil|Absolute=True">Silk To Silk Clearance Constraint: (0.222mm &lt; 0.254mm) Between Text "C12" (18.096mm,6.738mm) on Top Overlay And Text "U2" (21.73mm,4.738mm) on Top Overlay Silk Text to Silk Clearance [0.222mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4265.412mil|Location2.X=4276.662mil|Location1.Y=2002.249mil|Location2.Y=2013.499mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4265.412mil|Location2.X=4276.662mil|Location1.Y=2002.249mil|Location2.Y=2013.499mil|Absolute=True">Silk To Silk Clearance Constraint: (0.222mm &lt; 0.254mm) Between Text "C2" (36.73mm,13.238mm) on Top Overlay And Text "R1" (37.484mm,11.238mm) on Top Overlay Silk Text to Silk Clearance [0.222mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3916.812mil|Location2.X=3928.062mil|Location1.Y=1593.669mil|Location2.Y=1604.919mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3916.812mil|Location2.X=3928.062mil|Location1.Y=1593.669mil|Location2.Y=1604.919mil|Absolute=True">Silk To Silk Clearance Constraint: (0.058mm &lt; 0.254mm) Between Text "C3" (28.73mm,2.488mm) on Top Overlay And Text "R7" (25.98mm,0.988mm) on Top Overlay Silk Text to Silk Clearance [0.058mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4719.556mil|Location2.X=4730.806mil|Location1.Y=1588.863mil|Location2.Y=1600.113mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4719.556mil|Location2.X=4730.806mil|Location1.Y=1588.863mil|Location2.Y=1600.113mil|Absolute=True">Silk To Silk Clearance Constraint: (0.222mm &lt; 0.254mm) Between Text "C6" (47.23mm,2.738mm) on Top Overlay And Text "R6" (46.48mm,0.738mm) on Top Overlay Silk Text to Silk Clearance [0.222mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4679.106mil|Location2.X=4690.356mil|Location1.Y=1663.445mil|Location2.Y=1674.695mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4679.106mil|Location2.X=4690.356mil|Location1.Y=1663.445mil|Location2.Y=1674.695mil|Absolute=True">Silk To Silk Clearance Constraint: (0.011mm &lt; 0.254mm) Between Text "C6" (47.23mm,2.738mm) on Top Overlay And Track (47.395mm,4.5mm)(49.605mm,4.5mm) on Top Overlay Silk Text to Silk Clearance [0.011mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4336.718mil|Location2.X=4344.385mil|Location1.Y=1925.763mil|Location2.Y=1933.43mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4336.718mil|Location2.X=4344.385mil|Location1.Y=1925.763mil|Location2.Y=1933.43mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R1" (37.484mm,11.238mm) on Top Overlay And Text "U1" (38.234mm,9.488mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4394.255mil|Location2.X=4405.505mil|Location1.Y=1626.541mil|Location2.Y=1637.791mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4394.255mil|Location2.X=4405.505mil|Location1.Y=1626.541mil|Location2.Y=1637.791mil|Absolute=True">Silk To Silk Clearance Constraint: (0.137mm &lt; 0.254mm) Between Text "R9" (40.73mm,1.738mm) on Top Overlay And Track (40.757mm,3.625mm)(43.243mm,3.625mm) on Top Overlay Silk Text to Silk Clearance [0.137mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4370.549mil|Location2.X=4381.799mil|Location1.Y=1880.202mil|Location2.Y=1891.452mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4370.549mil|Location2.X=4381.799mil|Location1.Y=1880.202mil|Location2.Y=1891.452mil|Absolute=True">Silk To Silk Clearance Constraint: (0.032mm &lt; 0.254mm) Between Text "U1" (38.234mm,9.488mm) on Top Overlay And Track (40.271mm,9.9mm)(42.729mm,9.9mm) on Top Overlay Silk Text to Silk Clearance [0.032mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDMCKDKHAKNGBVH1T2SHCJTX3WGHYQW2F0RNTTECDIYLCCWTJM23GC"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3089.551mil|Location2.X=3091.551mil|Location1.Y=1770.653mil|Location2.Y=1772.653mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3089.551mil|Location2.X=3091.551mil|Location1.Y=1770.653mil|Location2.Y=1772.653mil|Absolute=True">Height Constraint: Small Component J1-5.08mm (7.5mm,7mm) on Top Layer Actual Height = 31.6mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5038.37mil|Location2.X=5040.37mil|Location1.Y=1810.024mil|Location2.Y=1812.024mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Public\Documents\Altium\Projects\Rogowski Spule\Rogowski pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5038.37mil|Location2.X=5040.37mil|Location1.Y=1810.024mil|Location2.Y=1812.024mil|Absolute=True">Height Constraint: Small Component J2-5.08mm (57mm,8mm) on Top Layer Actual Height = 31.6mm</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

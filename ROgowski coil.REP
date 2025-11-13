@@ -1,0 +1,52 @@
+*************************************************************
+FileName = ROgowski coil.GBR
+AutoAperture = True
+*************************************************************
+Generating : Top Layer
+      File : ROgowski coil_Copper_Signal_Top.gbr
+
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D10
+    D11
+    D12
+*************************************************************
+
+*************************************************************
+Generating : Bottom Layer
+      File : ROgowski coil_Copper_Signal_Bot.gbr
+
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D10
+    D11
+    D12
+*************************************************************
+
+*************************************************************
+Generating : Profile
+      File : ROgowski coil_Profile.gbr
+
+
+Used DCodes :
+    D13
+*************************************************************
+
+*************************************************************
+Generating : Plated through-hole drill file
+      File : ROgowski coil_PTH_Drill.gbr
+
+
+Used DCodes :
+    D14
+    D15
+*************************************************************
+
